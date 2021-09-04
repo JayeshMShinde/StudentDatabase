@@ -1,5 +1,5 @@
 # StudentDatabase
-
+This Project is about basic of jsonPowerDb and to connect the database with Neatbeans
 
 
 Benefits of using JsonPowerDB
