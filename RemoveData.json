@@ -1,0 +1,54 @@
+{
+  "version": 6,
+  "entities": [
+    {
+      "entity": {
+        "type": "Project",
+        "id": "e31ae95a-5687-4534-a8f2-3390a23ea494",
+        "name": "sa"
+      },
+      "children": [
+        {
+          "entity": {
+            "type": "Request",
+            "method": {
+              "requestBody": true,
+              "link": "http://tools.ietf.org/html/rfc7231#section-4.3.3",
+              "name": "POST"
+            },
+            "body": {
+              "formBody": {
+                "overrideContentType": true,
+                "encoding": "application/x-www-form-urlencoded",
+                "items": []
+              },
+              "bodyType": "Text",
+              "textBody": "{\n    \"token\": \"90936189|-31948849169461955|90943931\",\n    \"cmd\": \"REMOVE\",\n    \"dbName\": \"sample\",\n    \"rel\": \"Erel\",\n    \"record\": 1\n}"
+            },
+            "uri": {
+              "query": {
+                "delimiter": "&",
+                "items": []
+              },
+              "scheme": {
+                "name": "http",
+                "version": "V11"
+              },
+              "host": "api.login2explore.com:5577",
+              "path": "/api/iml"
+            },
+            "id": "54835604-4dc6-4e9a-b629-9a075b226f2e",
+            "name": "REMOVE",
+            "headers": [
+              {
+                "enabled": true,
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
