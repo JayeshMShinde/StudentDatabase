@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html lang="en">
+    <head>
+        <title>Student-Database</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet"
+              href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css" type="text/css"/>
+
+        <script
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script
+        src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src=" http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js "></script>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Student Registration Form</h2>
+            <form id="studentForm" method="post">
+                <div class="form-group">
+                    <span><label for="name">Student name:</label> <label id="nameMsg">
+                        </label></span>
+                    <input type="text" class="form-control" name="Name" id="Name"
+                           placeholder="Enter Student name" required>
+                </div>
+                <div class="form-group">
+                    <label for="Course">Course:</label>
+                    <input type="text" class="form-control" id="Course"
+                           placeholder="Enter Course Name" name="Course">
+                </div>
+                <div class="form-group">
+                    <label for="Email">Email Id:</label>
+                    <input type="email" class="form-control" id="Email"
+                           placeholder="Enter Student Email" name="Email">
+                </div>
+
+                <input type="button" class="btn btn-primary" id="studSave" value="Save"
+                       onclick="saveStudentdata();">
+            </form>
+        </div>
+        <script>
+            function validateAndGetFormData() {
+                var NameVar = $("#Name").val();
+                if (NameVar === "") {
+                    alert("Student name Required Value");
+                    $("#Name").focus();
+                    return "";
+                }
+                var CourseVar = $("#Course").val();
+                if (CourseVar === "") {
+                    alert("Course Name is Required Value");
+                    $("#Course").focus();
+                    return "";
+                }
+                var EmailVar = $("#Email").val();
+                if (EmailVar === "") {
+                    alert("student Email is Required Value");
+                    $("#Email").focus();
+                    return "";
+                }
+                var jsonStrObj = {
+                    Name: NameVar,
+                    Course: CourseVar,
+                    Email: EmailVar
+                };
+                return JSON.stringify(jsonStrObj);
+            }
+           
+            function resetForm() {
+                $("#Name").val("");
+                $("#Course").val("");
+                $("#Email").val("");
+                $("#Name").focus();
+            }
+            function saveStudentdata() {
+                var jsonStr = validateAndGetFormData();
+                if (jsonStr === "") {
+                    return;
+                }
+                var putReqStr = createPUTRequest("90936189|-31948849169461955|90943931", jsonStr, "STUDENT-db", "S-REL");
+                alert(putReqStr);
+                jQuery.ajaxSetup({async: false});
+                var resultObj = executeCommandAtGivenBaseUrl(putReqStr, "http://api.login2explore.com:5577", "/api/iml");
+                alert(JSON.stringify(resultObj));
+                jQuery.ajaxSetup({async: true});
+
+                resetForm();
+            }
+        </script>
+    </body>
+</html>
+
+
